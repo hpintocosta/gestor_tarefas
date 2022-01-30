@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Criar Grupo de Tarefas{% endblock %}
+
+{% block content %}
+    <div class="h-100 p-5 bg-light border rouded-8">
+        <h1>Criar Grupo de Tarefas</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+
+            <br>
+            <input class="btn btn-success" type="submit" value="Criar Grupo" >
+        </form>
+        <hr/>
+        <h5>Lista de grupos de tarefas</h5>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Grupo</th>
+                    <th scope="col">Eliminar Grupo</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for grupo in groups %}
+            <tr>
+                <td>{{ grupo.group }}</td>
+                <td><a class="btn btn-danger" href="{% url 'excluir_grupo' grupo.id %}">X</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} {{ tarefa.titulo }} {% endblock %}
+
+{% block content %}
+    <div class="h-100 p-5 bg-light border rounded-3">
+        <h1>Editar Tarefa:</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <br>
+            <input class="btn btn-success" type="submit" value="Guardar Alterações">
+            <a class="btn btn-danger" href="{% url 'tarefas_pendentes_list' %}">Cancelar Alterações</a>
+        </form>
+    </div>
+{% endblock %}
